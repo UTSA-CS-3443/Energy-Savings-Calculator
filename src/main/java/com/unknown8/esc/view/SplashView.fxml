@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unknown8.esc.controller.SplashViewController">
+   <children>
+      <Label alignment="CENTER" layoutX="63.0" layoutY="86.0" text="Energy Savings Calculator" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="86.0">
+         <font>
+            <Font name="Droid Sans" size="36.0" />
+         </font>
+      </Label>
+      <ButtonBar layoutX="386.0" layoutY="346.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+         <buttons>
+            <JFXButton fx:id="newButton" buttonType="RAISED" style="-fx-background-color: #5264AE;" text="New" textFill="WHITE">
+               <font>
+                  <Font name="Droid Sans" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="openButton" buttonType="RAISED" layoutX="125.0" layoutY="16.0" onAction="#handleOpenButton" style="-fx-background-color: #5264AE;" text="Open..." textFill="WHITE">
+               <font>
+                  <Font name="Droid Sans" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>

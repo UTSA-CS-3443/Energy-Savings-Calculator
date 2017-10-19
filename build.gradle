@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+
+version = '1.0'
+
+mainClassName = "com.unknown8.esc.Main"
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets.main.resources.srcDir 'src/main/java'
+dependencies {
+    compile files('libs/jfoenix-9.0.0.jar')
+}
+
