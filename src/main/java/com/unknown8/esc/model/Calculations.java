@@ -85,7 +85,7 @@ public class Calculations {
 	}
 
 	// Test
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
 		
 		System.out.println("Bill w/ Single Pane Windows & ParticleBoard");
@@ -114,6 +114,6 @@ public class Calculations {
 		
 
 
-	}
+	}*/
 
 }

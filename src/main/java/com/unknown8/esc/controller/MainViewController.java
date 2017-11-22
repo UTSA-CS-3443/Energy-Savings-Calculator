@@ -15,6 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
@@ -67,7 +70,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private MenuItem Save;
 	
 	@FXML
-	private Canvas HouseLayout;
+	private Canvas houseLayout;
 
 	private String typeWindow, typeDoor;
 	private double woAC, wAC, inTemp, outTemp, wallLengthX, wallLengthY;
@@ -100,7 +103,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			inTemp = Double.parseDouble(targetTempC.getText());
 			outTemp = Double.parseDouble(outdoorTempC.getText());
 			wallLengthX = Double.parseDouble(extWallLengthX.getText());
-			wallLengthY = Double.parseDouble(extWallLengthY.geText());
+			wallLengthY = Double.parseDouble(extWallLengthY.getText());
 			numWin = Integer.parseInt(numWindows.getText());
 			numDoor = Integer.parseInt(numDoors.getText());
 			typeWindow = windowType.getValue();
@@ -125,11 +128,11 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			return;
 		}
 		out1.setEditable(true);
-		out1.setText(this.calc.getSavings());
+		out1.setText(String.valueOf(this.calc.getSavings()));
 		out1.setEditable(false);
 
 		out2.setEditable(true);
-		out2.setText(this.calc.getNewBill(wAC, windowType, doorType));
+		out2.setText(String.valueOf(this.calc.getNewBill(wAC, typeWindow, typeDoor)));
 		out2.setEditable(false);
 
 		out3.setEditable(true);
@@ -164,7 +167,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setText(typeDoor);
 		out9.setEditable(false);
 		
-		Rectangle House = new Rectangle( adgwdgwad);
+		//Rectangle House = new Rectangle( adgwdgwad);
+		drawHouse();
 		
 		
 
@@ -226,8 +230,6 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setEditable(true);
 		out9.setText("");
 		out9.setEditable(false);
-		
-		drawHouse();
 
 	}
 
