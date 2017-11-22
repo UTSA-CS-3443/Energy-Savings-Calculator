@@ -109,8 +109,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			typeWindow = windowType.getValue();
 			typeDoor = doorType.getValue();
 			if (typeWindow == "Type" || typeDoor == "Type") {
-				System.out.println("Fill in every box.");
-
+				
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Fill In Everything");
 				alert.setHeaderText(null);
@@ -118,6 +117,45 @@ public class MainViewController implements EventHandler<ActionEvent> {
 				alert.showAndWait();
 				return;
 			}
+			if (woAC <= 0 || wAC <= 0) {
+			
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Input A Valid Bill");
+				alert.setHeaderText(null);
+				alert.setContentText("Input a bill greater than 0!");
+				alert.showAndWait();
+				return;
+			}
+			if (numWin < 0 || numWin > 20) {
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Enter a reasonable number of windows!");
+				alert.setHeaderText(null);
+				alert.setContentText("Please select a number 0 through 20");
+				alert.showAndWait();
+				return;
+			}
+			if (numDoor < 1 || numDoor > 10) {
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Enter a reasonable number of doors!");
+				alert.setHeaderText(null);
+				alert.setContentText("Please select a number 1 through 10!");
+				alert.showAndWait();
+				return;
+			
+			}
+			if (outTemp < -89 || outTemp > 54) {
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Enter a reasonable temperature!");
+				alert.setHeaderText(null);
+				alert.setContentText("Please select a temperature between -89 and 54!");
+				alert.showAndWait();
+				return;
+			}
+
+			
 		} catch (Exception e1) {
 			System.out.println("Fill in every box.");
 			Alert alert = new Alert(AlertType.INFORMATION);
