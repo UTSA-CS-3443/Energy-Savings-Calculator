@@ -3,6 +3,7 @@ package com.unknown8.esc.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,7 +24,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
 	private TextField outdoorTempC;
 	@FXML
-	private TextField extWallLength;
+	private TextField extWallLengthX;
+	@FXML
+	private TextField extWallLengthY;
 	@FXML
 	private TextField numWindows;
 	@FXML
@@ -44,6 +47,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
 	private TextField out5;
 	@FXML
+	private TextField out51;
+	@FXML
 	private TextField out6;
 	@FXML
 	private TextField out7;
@@ -58,9 +63,12 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	Button clear;
 	@FXML
 	private MenuItem Save;
+	
+	@FXML
+	private Canvas HouseLayout;
 
 	private String typeWindow, typeDoor;
-	private double woAC, wAC, inTemp, outTemp, wallLength;
+	private double woAC, wAC, inTemp, outTemp, wallLengthX, wallLengthY;
 	private int numWin, numDoor;
 
 	@FXML
@@ -82,7 +90,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			wAC = Double.parseDouble(wACBill.getText());
 			inTemp = Double.parseDouble(targetTempC.getText());
 			outTemp = Double.parseDouble(outdoorTempC.getText());
-			wallLength = Double.parseDouble(extWallLength.getText());
+			wallLengthX = Double.parseDouble(extWallLengthX.getText());
+			wallLengthY = Double.parseDouble(extWallLengthY.geText());
 			numWin = Integer.parseInt(numWindows.getText());
 			numDoor = Integer.parseInt(numDoors.getText());
 			typeWindow = windowType.getValue();
@@ -123,8 +132,12 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out4.setEditable(false);
 
 		out5.setEditable(true);
-		out5.setText(String.valueOf(wallLength));
+		out5.setText(String.valueOf(wallLengthX));
 		out5.setEditable(false);
+		
+		out51.setEditable(true);
+		out51.setText(String.valueOf(wallLengthY));
+		out51.setEditable(false);
 
 		out6.setEditable(true);
 		out6.setText(String.valueOf(numWin));
@@ -141,6 +154,10 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setEditable(true);
 		out9.setText(typeDoor);
 		out9.setEditable(false);
+		
+		Rectangle House = new Rectangle( adgwdgwad);
+		
+		
 
 	}
 
@@ -149,11 +166,12 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		// Clear the comboBox via initialize
 		initialize();
 		// Clear stored values
-		woAC = wAC = inTemp = outTemp = wallLength = numWin = numDoor = 0;
+		woAC = wAC = inTemp = outTemp = wallLengthX =  wallLengthY = numWin = numDoor = 0;
 
 		numWindows.setText("");
 		numDoors.setText("");
-		extWallLength.setText("");
+		extWallLengthX.setText("");
+		extWallLengthY.setText("");
 		targetTempC.setText("");
 		outdoorTempC.setText("");
 		woACBill.setText("");
@@ -180,6 +198,10 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out5.setText("");
 		out5.setEditable(false);
 
+		out51.setEditable(true);
+		out51.setText("");
+		out51.setEditable(false);
+		
 		out6.setEditable(true);
 		out6.setText("");
 		out6.setEditable(false);
@@ -209,7 +231,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			saveFile.println(wAC);
 			saveFile.println(inTemp);
 			saveFile.println(outTemp);
-			saveFile.println(wallLength);
+			saveFile.println(wallLengthX);
+			saveFile.println(wallLengthY);
 			saveFile.println(numWin);
 			saveFile.println(numDoor);
 			saveFile.close();

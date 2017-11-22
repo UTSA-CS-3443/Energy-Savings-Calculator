@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -19,12 +21,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.4750378214826021" orientation="VERTICAL" prefHeight="663.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unknown8.esc.controller.MainViewController">
+<SplitPane dividerPositions="0.6078651685393258" orientation="VERTICAL" prefHeight="892.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unknown8.esc.controller.MainViewController">
    <items>
       <AnchorPane prefHeight="395.0" prefWidth="848.0">
          <children>
-            <ProgressIndicator layoutX="386.0" layoutY="147.0" progress="0.0" />
-            <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="819.0">
+            <MenuBar layoutY="1.0" prefHeight="25.0" prefWidth="871.0">
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
@@ -41,9 +42,10 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <Canvas fx:id="houseLayout" height="517.0" layoutX="-8.0" layoutY="26.0" width="879.0" />
          </children>
       </AnchorPane>
-      <GridPane gridLinesVisible="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="348.0" prefWidth="848.0">
+      <GridPane gridLinesVisible="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="350.0" prefWidth="871.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="885.0" minWidth="10.0" prefWidth="411.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="525.0" minWidth="10.0" prefWidth="408.0" />
