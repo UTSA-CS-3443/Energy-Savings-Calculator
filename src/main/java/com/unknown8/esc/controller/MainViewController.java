@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
+import com.unknown8.esc.model.Calculations;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -47,7 +49,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
 	private TextField out5;
 	@FXML
-	private TextField out51;
+	private TextField out5y;
 	@FXML
 	private TextField out6;
 	@FXML
@@ -70,6 +72,13 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private String typeWindow, typeDoor;
 	private double woAC, wAC, inTemp, outTemp, wallLengthX, wallLengthY;
 	private int numWin, numDoor;
+	
+	private Calculations calc;
+	
+	public MainViewController() {
+		super();
+		this.calc = new Calculations();
+	}
 
 	@FXML
 	public void initialize() {
@@ -116,11 +125,11 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			return;
 		}
 		out1.setEditable(true);
-		out1.setText(String.valueOf(woAC));
+		out1.setText(this.calc.getSavings());
 		out1.setEditable(false);
 
 		out2.setEditable(true);
-		out2.setText(String.valueOf(wAC));
+		out2.setText(this.calc.getNewBill(wAC, windowType, doorType));
 		out2.setEditable(false);
 
 		out3.setEditable(true);
@@ -135,9 +144,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out5.setText(String.valueOf(wallLengthX));
 		out5.setEditable(false);
 		
-		out51.setEditable(true);
-		out51.setText(String.valueOf(wallLengthY));
-		out51.setEditable(false);
+		out5y.setEditable(true);
+		out5y.setText(String.valueOf(wallLengthY));
+		out5y.setEditable(false);
 
 		out6.setEditable(true);
 		out6.setText(String.valueOf(numWin));
