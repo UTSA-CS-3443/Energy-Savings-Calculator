@@ -127,13 +127,13 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			alert.showAndWait();
 			return;
 		}
-		out1.setEditable(true);
-		out1.setText(String.valueOf(this.calc.getSavings()));
-		out1.setEditable(false);
-
 		out2.setEditable(true);
 		out2.setText(String.valueOf(this.calc.getNewBill(wAC, typeWindow, typeDoor)));
 		out2.setEditable(false);
+		
+		out1.setEditable(true);
+		out1.setText(String.valueOf(this.calc.getSavings()));
+		out1.setEditable(false);
 
 		out3.setEditable(true);
 		out3.setText(String.valueOf(inTemp));

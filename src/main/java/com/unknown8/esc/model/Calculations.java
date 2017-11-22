@@ -2,8 +2,8 @@ package com.unknown8.esc.model;
 
 public class Calculations {
 
-	public static double newBill;
-	private static double wAC;
+	public double newBill;
+	private double wAC;
 	private double savings;
 	private String windowType;
 	private String doorType;
@@ -20,18 +20,19 @@ public class Calculations {
 	static double pbv = pb.getSV();
 	static double hwv = hw.getSV();
 
-	public static double getNewBill(double wAC, String windowType, String doorType) {
-		if (windowType.equals("Single Pane") && (doorType.equals("Particle Board"))) {
+	public double getNewBill(double wAC, String windowType, String doorType) {
+		this.wAC = wAC;
+		if (windowType.equals("Single pane") && (doorType.equals("Particle board"))) {
 			newBill = wAC * spv * pbv;
 
 		}
 
-		if (windowType.equals("Single Pane") && (doorType.equals("Hardwood"))) {
+		if (windowType.equals("Single pane") && (doorType.equals("Hardwood"))) {
 			newBill = wAC * spv - (wAC * hwv);
 
 		}
 
-		if (windowType.equals("Double Pane") && (doorType.equals("Particle Board"))) {
+		if (windowType.equals("Double Pane") && (doorType.equals("Particle board"))) {
 			newBill =  wAC - (wAC * dpv) * pbv;
 
 		}
@@ -40,7 +41,7 @@ public class Calculations {
 
 		}
 
-		if (windowType.equals("Triple Pane") && (doorType.equals("Particle Board"))) {
+		if (windowType.equals("Triple Pane") && (doorType.equals("Particle board"))) {
 			newBill = wAC - (wAC * tpv) * pbv;
 
 		}
@@ -52,11 +53,13 @@ public class Calculations {
 
 	}
 
-	public void savings(double newBill, double wAC) {
+	public void savings(double wAC, double newBill) {
 		savings = wAC - newBill;
+		
 	}
 
 	public double getSavings() {
+		savings(wAC, newBill);
 		return savings;
 	}
 
@@ -68,13 +71,13 @@ public class Calculations {
 		this.windowType = windowType;
 	}
 
-	public static double getwAC() {
+	public double getwAC() {
 		return wAC;
 	}
 
-	public static void setwAC(double wAC) {
-		Calculations.wAC = wAC;
-	}
+	//public void setwAC(double wAC) {
+		//Calculations.wAC = wAC;
+	//}
 
 	public String getDoorType() {
 		return doorType;
