@@ -71,6 +71,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	
 	@FXML
 	private Canvas houseLayout;
+	
+	private GraphicsContext gc;
 
 	private String typeWindow, typeDoor;
 	private double woAC, wAC, inTemp, outTemp, wallLengthX, wallLengthY;
@@ -208,8 +210,6 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		//Rectangle House = new Rectangle( adgwdgwad);
 		drawHouse();
 		
-		
-
 	}
 
 	@FXML
@@ -268,6 +268,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setEditable(true);
 		out9.setText("");
 		out9.setEditable(false);
+		
+		gc.clearRect(0,0, houseLayout.getWidth(), houseLayout.getHeight());
 
 	}
 
@@ -293,7 +295,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	}
 	
 	private void drawHouse(){
-		GraphicsContext gc = houseLayout.getGraphicsContext2D();
+		gc = houseLayout.getGraphicsContext2D();
 		gc.setLineWidth(1.0);
 		gc.setFill(Color.CYAN);
 		gc.fillRect( houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY );
