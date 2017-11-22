@@ -207,9 +207,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out5.setText("");
 		out5.setEditable(false);
 
-		out51.setEditable(true);
-		out51.setText("");
-		out51.setEditable(false);
+		out5y.setEditable(true);
+		out5y.setText("");
+		out5y.setEditable(false);
 		
 		out6.setEditable(true);
 		out6.setText("");
@@ -226,6 +226,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setEditable(true);
 		out9.setText("");
 		out9.setEditable(false);
+		
+		drawHouse();
 
 	}
 
@@ -249,5 +251,13 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			System.out.println("ESCsaveFile.txt was moved");
 		}
 	}
+	
+	private void drawHouse(){
+		GraphicsContext gc = houseLayout.getGraphicsContext2D();
+		gc.setLineWidth(1.0);
+		gc.setFill(Color.CYAN);
+		gc.fillRect( houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY );
+	}
+
 
 }
