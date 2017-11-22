@@ -60,7 +60,7 @@
                   <TextField fx:id="numDoors" layoutX="67.0" layoutY="98.0" promptText="Number of doors" />
                   <ComboBox fx:id="windowType" layoutX="223.0" layoutY="69.0" prefHeight="25.0" prefWidth="149.0" promptText="Type" />
                   <ComboBox fx:id="doorType" layoutX="223.0" layoutY="98.0" prefHeight="25.0" prefWidth="149.0" promptText="Type" />
-                  <TextField fx:id="extWallLength" layoutX="67.0" layoutY="130.0" promptText="Exterior wall length" />
+                  <TextField fx:id="extWallLengthX" layoutX="67.0" layoutY="130.0" promptText="Wall Length ( x-axis )" />
                   <TextField fx:id="targetTempC" layoutX="223.0" layoutY="130.0" promptText="Target indoor temp (C)" />
                   <TextField fx:id="outdoorTempC" layoutX="223.0" layoutY="162.0" promptText="Outdoor Temp (C)" />
                   <TextField fx:id="woACBill" layoutX="59.0" layoutY="250.0" promptText="Bill w/o AC" />
@@ -79,6 +79,7 @@
                   </Label>
                   <Label layoutX="43.0" layoutY="254.0" text="\$" />
                   <Button fx:id="confirm1" layoutX="298.0" layoutY="282.0" mnemonicParsing="false" onAction="#clearFields" text="Clear" />
+                  <TextField fx:id="extWallLengthY" layoutX="67.0" layoutY="162.0" promptText="Wall Length ( y-axis ) b" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -104,6 +105,7 @@
                   </Label>
                   <Label layoutX="39.0" layoutY="254.0" text="\$" />
                   <Label layoutX="39.0" layoutY="288.0" prefHeight="17.0" prefWidth="7.0" text="\$" />
+                  <TextField fx:id="out5y" editable="false" layoutX="52.0" layoutY="167.0" promptText="Output - Exterior wall length" />
                </children></AnchorPane>
          </children>
       </GridPane>
