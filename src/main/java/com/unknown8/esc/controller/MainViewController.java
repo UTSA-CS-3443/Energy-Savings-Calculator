@@ -299,7 +299,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, houseLayout.getWidth(), houseLayout.getHeight());
 		gc.setFill(Color.CYAN);
-		gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY);
+		gc.fillRect( (houseLayout.getWidth()/2) - (wallLengthX/2), (houseLayout.getHeight()/2) - (wallLengthY()/2), wallLengthX, wallLengthY);
+		//gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY);
 	}
 
 }
