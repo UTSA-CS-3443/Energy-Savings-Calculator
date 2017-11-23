@@ -68,18 +68,18 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	Button clear;
 	@FXML
 	private MenuItem Save;
-	
+
 	@FXML
 	private Canvas houseLayout;
-	
+
 	private GraphicsContext gc;
 
 	private String typeWindow, typeDoor;
 	private double woAC, wAC, inTemp, outTemp, wallLengthX, wallLengthY;
 	private int numWin, numDoor;
-	
+
 	private Calculations calc;
-	
+
 	public MainViewController() {
 		super();
 		this.calc = new Calculations();
@@ -111,7 +111,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			typeWindow = windowType.getValue();
 			typeDoor = doorType.getValue();
 			if (typeWindow == "Type" || typeDoor == "Type") {
-				
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Fill In Everything");
 				alert.setHeaderText(null);
@@ -120,7 +120,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 				return;
 			}
 			if (woAC <= 0 || wAC <= 0) {
-			
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Input A Valid Bill");
 				alert.setHeaderText(null);
@@ -129,7 +129,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 				return;
 			}
 			if (numWin < 0 || numWin > 20) {
-				
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Enter a reasonable number of windows!");
 				alert.setHeaderText(null);
@@ -138,17 +138,17 @@ public class MainViewController implements EventHandler<ActionEvent> {
 				return;
 			}
 			if (numDoor < 1 || numDoor > 10) {
-				
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Enter a reasonable number of doors!");
 				alert.setHeaderText(null);
 				alert.setContentText("Please select a number 1 through 10!");
 				alert.showAndWait();
 				return;
-			
+
 			}
 			if (outTemp < -89 || outTemp > 54) {
-				
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Enter a reasonable temperature!");
 				alert.setHeaderText(null);
@@ -157,7 +157,6 @@ public class MainViewController implements EventHandler<ActionEvent> {
 				return;
 			}
 
-			
 		} catch (Exception e1) {
 			System.out.println("Fill in every box.");
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -170,7 +169,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out2.setEditable(true);
 		out2.setText(String.valueOf(this.calc.getNewBill(wAC, typeWindow, typeDoor)));
 		out2.setEditable(false);
-		
+
 		out1.setEditable(true);
 		out1.setText(String.valueOf(this.calc.getSavings()));
 		out1.setEditable(false);
@@ -186,7 +185,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out5.setEditable(true);
 		out5.setText(String.valueOf(wallLengthX));
 		out5.setEditable(false);
-		
+
 		out5y.setEditable(true);
 		out5y.setText(String.valueOf(wallLengthY));
 		out5y.setEditable(false);
@@ -206,18 +205,20 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setEditable(true);
 		out9.setText(typeDoor);
 		out9.setEditable(false);
-		
-		//Rectangle House = new Rectangle( adgwdgwad);
+
+		// Rectangle House = new Rectangle( adgwdgwad);
 		drawHouse();
-		
+
 	}
 
 	@FXML
 	public void clearFields(ActionEvent e) {
+		gc.setFill(Color.WHITE);
+		gc.fillRect(0, 0, houseLayout.getWidth(), houseLayout.getHeight());
 		// Clear the comboBox via initialize
 		initialize();
 		// Clear stored values
-		woAC = wAC = inTemp = outTemp = wallLengthX =  wallLengthY = numWin = numDoor = 0;
+		woAC = wAC = inTemp = outTemp = wallLengthX = wallLengthY = numWin = numDoor = 0;
 
 		numWindows.setText("");
 		numDoors.setText("");
@@ -252,7 +253,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out5y.setEditable(true);
 		out5y.setText("");
 		out5y.setEditable(false);
-		
+
 		out6.setEditable(true);
 		out6.setText("");
 		out6.setEditable(false);
@@ -268,8 +269,6 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setEditable(true);
 		out9.setText("");
 		out9.setEditable(false);
-		
-		gc.clearRect(0,0, houseLayout.getWidth(), houseLayout.getHeight());
 
 	}
 
@@ -293,13 +292,14 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			System.out.println("ESCsaveFile.txt was moved");
 		}
 	}
-	
-	private void drawHouse(){
+
+	private void drawHouse() {
 		gc = houseLayout.getGraphicsContext2D();
 		gc.setLineWidth(1.0);
+		gc.setFill(Color.WHITE);
+		gc.fillRect(0, 0, houseLayout.getWidth(), houseLayout.getHeight());
 		gc.setFill(Color.CYAN);
-		gc.fillRect( houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY );
+		gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY);
 	}
-
 
 }
