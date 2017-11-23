@@ -1,7 +1,7 @@
 package com.unknown8.esc.model;
 
 public abstract class Doors{
-	int height = 5;
+	int height = 8;
 	int width = 3;
 	double savingsValue;
 	double rValue;
