@@ -68,6 +68,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	Button clear;
 	@FXML
 	private MenuItem Save;
+	@FXML
+	private MenuItem SaveAs;
+	private int SaveCount=0;
 
 	@FXML
 	private Canvas houseLayout;
@@ -290,6 +293,27 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			saveFile.close();
 		} catch (FileNotFoundException ee) {
 			System.out.println("ESCsaveFile.txt was moved");
+		}
+	}
+	
+	@FXML
+	private void saveAs(ActionEvent e) {
+		try {
+			File sf = new File("ESCsaveFile"+SaveCount+".txt");
+			PrintStream saveFile = new PrintStream(sf);
+			saveFile.println(typeWindow);
+			saveFile.println(typeDoor);
+			saveFile.println(woAC);
+			saveFile.println(wAC);
+			saveFile.println(inTemp);
+			saveFile.println(outTemp);
+			saveFile.println(wallLengthX);
+			saveFile.println(wallLengthY);
+			saveFile.println(numWin);
+			saveFile.println(numDoor);
+			saveFile.close();
+		} catch (FileNotFoundException ee) {
+			System.out.println("ESCsaveFile"+SaveCount+".txt was moved");
 		}
 	}
 
