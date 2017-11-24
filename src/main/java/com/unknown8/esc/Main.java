@@ -2,8 +2,6 @@ package com.unknown8.esc;
 
 import java.io.IOException;
 
-import com.unknown8.esc.controller.SplashViewController;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -53,9 +51,6 @@ public class Main extends Application {
 			AnchorPane splash = (AnchorPane) loader.load();
 
 			rootLayout.setCenter(splash);
-
-			SplashViewController controller = loader.getController();
-			controller.setPrimaryStage(this.primaryStage);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

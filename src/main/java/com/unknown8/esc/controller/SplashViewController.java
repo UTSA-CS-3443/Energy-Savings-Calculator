@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -20,13 +19,14 @@ public class SplashViewController {
 	@FXML
 	private JFXButton openButton;
 
-	private Stage primaryStage;
-
 	@FXML
 	private void handleNewButton(ActionEvent e) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../view/MainView.fxml"));
-			Main.stage.setScene(new Scene(root));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().clear();
+			scene.getStylesheets().add(getClass().getResource("./mainView.css").toExternalForm());
+			Main.stage.setScene(scene);
 			Main.stage.show();
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -37,10 +37,6 @@ public class SplashViewController {
 	private void handleOpenButton(ActionEvent e) {
 		FileChooser chooser = new FileChooser();
 		chooser.setTitle("Choose existing floorplan");
-		chooser.showOpenDialog(primaryStage);
-	}
-
-	public void setPrimaryStage(Stage primaryStage) {
-		this.primaryStage = primaryStage;
+		chooser.showOpenDialog(Main.stage);
 	}
 }

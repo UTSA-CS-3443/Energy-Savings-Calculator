@@ -5,67 +5,67 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 import com.unknown8.esc.model.Calculations;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXButton;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
-	private TextField woACBill;
+	private JFXTextField woACBill;
 	@FXML
-	private TextField wACBill;
+	private JFXTextField wACBill;
 	@FXML
-	private TextField targetTempC;
+	private JFXTextField targetTempC;
 	@FXML
-	private TextField outdoorTempC;
+	private JFXTextField outdoorTempC;
 	@FXML
-	private TextField extWallLengthX;
+	private JFXTextField extWallLengthX;
 	@FXML
-	private TextField extWallLengthY;
+	private JFXTextField extWallLengthY;
 	@FXML
-	private TextField numWindows;
+	private JFXTextField numWindows;
 	@FXML
-	private ComboBox<String> windowType;
+	private JFXComboBox<String> windowType;
 	@FXML
-	private TextField numDoors;
+	private JFXTextField numDoors;
 	@FXML
-	private ComboBox<String> doorType;
+	private JFXComboBox<String> doorType;
 
 	@FXML
-	private TextField out1;
+	private JFXTextField out1;
 	@FXML
-	private TextField out2;
+	private JFXTextField out2;
 	@FXML
-	private TextField out3;
+	private JFXTextField out3;
 	@FXML
-	private TextField out4;
+	private JFXTextField out4;
 	@FXML
-	private TextField out5;
+	private JFXTextField out5;
 	@FXML
-	private TextField out5y;
+	private JFXTextField out5y;
 	@FXML
-	private TextField out6;
+	private JFXTextField out6;
 	@FXML
-	private TextField out7;
+	private JFXTextField out7;
 	@FXML
-	private TextField out8;
+	private JFXTextField out8;
 	@FXML
-	private TextField out9;
+	private JFXTextField out9;
 
 	@FXML
-	Button confirm;
+	JFXButton confirm;
 	@FXML
-	Button clear;
+	JFXButton clear;
 	@FXML
 	private MenuItem Save;
 	@FXML
@@ -92,11 +92,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	public void initialize() {
 		windowType.getItems().clear();
 		windowType.getItems().addAll("Single pane", "Double Pane", "Triple Pane");
-		windowType.getSelectionModel().select("Type");
 
 		doorType.getItems().clear();
 		doorType.getItems().addAll("Particle board", "Hardwood");
-		doorType.getSelectionModel().select("Type");
 	}
 
 	@Override
@@ -113,7 +111,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			numDoor = Integer.parseInt(numDoors.getText());
 			typeWindow = windowType.getValue();
 			typeDoor = doorType.getValue();
-			if (typeWindow == "Type" || typeDoor == "Type") {
+			if (typeWindow == null || typeDoor == null) {
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Fill In Everything");
@@ -323,7 +321,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, houseLayout.getWidth(), houseLayout.getHeight());
 		gc.setFill(Color.CYAN);
-		gc.fillRect( (houseLayout.getWidth()/2) - (wallLengthX/2), (houseLayout.getHeight()/2) - (wallLengthY()/2), wallLengthX, wallLengthY);
+		gc.fillRect( (houseLayout.getWidth()/2) - (wallLengthX/2), (houseLayout.getHeight()/2) - (wallLengthY/2), wallLengthX, wallLengthY);
 		//gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY);
 	}
 
