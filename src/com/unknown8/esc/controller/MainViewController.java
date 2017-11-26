@@ -3,6 +3,7 @@ package com.unknown8.esc.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import com.unknown8.esc.model.Calculations;
 import com.jfoenix.controls.JFXComboBox;
@@ -15,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -70,7 +72,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private MenuItem Save;
 	@FXML
 	private MenuItem SaveAs;
-	private int SaveCount=0;
+	@FXML
+	private MenuItem New;
+	private int SaveCount = 0;
 
 	@FXML
 	private Canvas houseLayout;
@@ -80,6 +84,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private String typeWindow, typeDoor;
 	private double woAC, wAC, inTemp, outTemp, wallLengthX, wallLengthY;
 	private int numWin, numDoor;
+	private ArrayList<Double> cornersX;
+	private ArrayList<Double> cornersY;
 
 	private Calculations calc;
 
@@ -95,6 +101,10 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 		doorType.getItems().clear();
 		doorType.getItems().addAll("Particle board", "Hardwood");
+
+		drawHouse();
+		cornersX = new ArrayList<Double>();
+		cornersY = new ArrayList<Double>();
 	}
 
 	@Override
@@ -208,7 +218,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setEditable(false);
 
 		// Rectangle House = new Rectangle( adgwdgwad);
-		drawHouse();
+		// drawHouse();
 
 	}
 
@@ -293,11 +303,11 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			System.out.println("ESCsaveFile.txt was moved");
 		}
 	}
-	
+
 	@FXML
 	private void saveAs(ActionEvent e) {
 		try {
-			File sf = new File("ESCsaveFile"+SaveCount+".txt");
+			File sf = new File("ESCsaveFile" + SaveCount + ".txt");
 			PrintStream saveFile = new PrintStream(sf);
 			saveFile.println(typeWindow);
 			saveFile.println(typeDoor);
@@ -311,18 +321,33 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			saveFile.println(numDoor);
 			saveFile.close();
 		} catch (FileNotFoundException ee) {
-			System.out.println("ESCsaveFile"+SaveCount+".txt was moved");
+			System.out.println("ESCsaveFile" + SaveCount + ".txt was moved");
 		}
 	}
 
 	private void drawHouse() {
 		gc = houseLayout.getGraphicsContext2D();
-		gc.setLineWidth(1.0);
+		// gc.setLineWidth(1.0);
 		gc.setFill(Color.WHITE);
 		gc.fillRect(0, 0, houseLayout.getWidth(), houseLayout.getHeight());
-		gc.setFill(Color.CYAN);
-		gc.fillRect( (houseLayout.getWidth()/2) - (wallLengthX/2), (houseLayout.getHeight()/2) - (wallLengthY/2), wallLengthX, wallLengthY);
-		//gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY);
+		// gc.setFill(Color.CYAN);
+		// gc.fillRect( (houseLayout.getWidth()/2) - (wallLengthX/2),
+		// (houseLayout.getHeight()/2) - (wallLengthY/2), wallLengthX, wallLengthY);
+		// gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4,
+		// wallLengthX, wallLengthY);
+		houseLayout.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				gc.beginPath();
+				// gc.moveTo(event.getX(), event.getY());
+				// gc.stroke();
+				cornersX.add(event.getX());
+				cornersY.add(event.getY());
+				if (cornersX.size() > 1) {
+				gc.strokeLine(cornersX.get(cornersX.size() - 1), cornersY.get(cornersY.size() - 1),
+						cornersX.get(cornersX.size() - 2), cornersY.get(cornersY.size() - 2));
+				}
+			}
+		});
 	}
-
 }

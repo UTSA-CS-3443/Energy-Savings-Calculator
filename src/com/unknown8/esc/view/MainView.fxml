@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.6078651685393258" orientation="VERTICAL" prefHeight="892.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unknown8.esc.controller.MainViewController">
+<SplitPane dividerPositions="0.6078651685393258" orientation="VERTICAL" prefHeight="892.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unknown8.esc.controller.MainViewController">
    <items>
       <AnchorPane prefHeight="395.0" prefWidth="848.0">
          <children>
@@ -24,7 +24,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem fx:id="New" mnemonicParsing="false" onAction="#clearFields" text="New" />
                         <MenuItem mnemonicParsing="false" text="Open" />
                     <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#save" text="Save" />
                         <MenuItem mnemonicParsing="false" text="Save as..." />
@@ -87,28 +87,50 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="435.0" GridPane.columnIndex="1">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="14.0" text="House Output" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="14.0" text="House Output" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="195.0" text="Bill Calculations" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="38.0" text="Bill Calculations" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="out6" editable="false" layoutX="10.0" layoutY="64.0" promptText="Number of Windows" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
+                  <JFXTextField fx:id="out8" editable="false" layoutX="220.0" layoutY="64.0" promptText="Window Type" visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
+                  <JFXTextField fx:id="out7" editable="false" layoutX="10.0" layoutY="98.0" promptText="Number of Doors" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
+                  <JFXTextField fx:id="out9" editable="false" layoutX="220.0" layoutY="98.0" promptText="Door Type" visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
+                  <JFXTextField fx:id="out5" editable="false" layoutX="10.0" layoutY="129.0" promptText="Ext. Wall Length (x)" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
+                  <JFXTextField fx:id="out3" editable="false" layoutX="220.0" layoutY="129.0" promptText="Target Temp (C)" visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
+                  <JFXTextField fx:id="out5y" editable="false" layoutX="20.0" layoutY="161.0" promptText="Ext. Wall Length (y)" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
+                  <JFXTextField fx:id="out4" editable="false" layoutX="230.0" layoutY="161.0" promptText="Outdoor Temp (C)" visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
+                  <Label layoutX="139.0" layoutY="112.0" text="\$">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+                  <Label layoutX="139.0" layoutY="169.0" text="\$">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+                  <JFXTextField fx:id="out1" layoutX="154.0" layoutY="104.0" AnchorPane.leftAnchor="154.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font></JFXTextField>
+                  <JFXTextField fx:id="out2" layoutX="154.0" layoutY="161.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font></JFXTextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="112.0" text="You saved:">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="out6" editable="false" layoutX="10.0" layoutY="64.0" promptText="Number of Windows" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
-                  <JFXTextField fx:id="out8" editable="false" layoutX="220.0" layoutY="64.0" promptText="Window Type" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
-                  <JFXTextField fx:id="out7" editable="false" layoutX="10.0" layoutY="98.0" promptText="Number of Doors" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
-                  <JFXTextField fx:id="out9" editable="false" layoutX="220.0" layoutY="98.0" promptText="Door Type" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
-                  <JFXTextField fx:id="out5" editable="false" layoutX="10.0" layoutY="129.0" promptText="Ext. Wall Length (x)" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
-                  <JFXTextField fx:id="out3" editable="false" layoutX="220.0" layoutY="129.0" promptText="Target Temp (C)" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
-                  <JFXTextField fx:id="out5y" editable="false" layoutX="20.0" layoutY="161.0" promptText="Ext. Wall Length (y)" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="217.0" />
-                  <JFXTextField fx:id="out4" editable="false" layoutX="230.0" layoutY="161.0" promptText="Outdoor Temp (C)" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="10.0" />
-                  <Label layoutX="7.0" layoutY="249.0" text="\$" />
-                  <Label layoutX="7.0" layoutY="280.0" text="\$" />
-                  <JFXTextField fx:id="out1" layoutX="17.0" layoutY="244.0" promptText="Bill without AC" AnchorPane.leftAnchor="17.0" />
-                  <JFXTextField fx:id="out2" layoutX="17.0" layoutY="275.0" promptText="Bill with AC" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="174.0" text="New bill:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
          </children>
       </GridPane>
