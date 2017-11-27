@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.unknown8.esc.model.Calculations;
 import com.jfoenix.controls.JFXComboBox;
@@ -346,6 +347,16 @@ public class MainViewController implements EventHandler<ActionEvent> {
 				if (cornersX.size() > 1) {
 				gc.strokeLine(cornersX.get(cornersX.size() - 1), cornersY.get(cornersY.size() - 1),
 						cornersX.get(cornersX.size() - 2), cornersY.get(cornersY.size() - 2));
+				
+				double xMax = Collections.max(cornersX);
+				double yMax = Collections.max(cornersY);
+				double xMin = Collections.min(cornersX);
+				double yMin = Collections.min(cornersY);
+				double xSize = xMax - xMin;
+				double ySize = yMax - yMin;
+				
+				extWallLengthX.setText(String.valueOf(xSize));
+				extWallLengthY.setText(String.valueOf(ySize));
 				}
 			}
 		});
