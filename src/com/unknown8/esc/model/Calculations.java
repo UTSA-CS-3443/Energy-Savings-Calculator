@@ -4,6 +4,7 @@ public class Calculations {
 
 	public double newBill;
 	private double wAC;
+	private double saveable;
 	private double savings;
 	private String windowType;
 	private String doorType;
@@ -20,35 +21,37 @@ public class Calculations {
 	static double pbv = pb.getSV();
 	static double hwv = hw.getSV();
 
-	public double getNewBill(double wAC, String windowType, String doorType) {
+	public double getNewBill(double wAC, double woAC, String windowType, String doorType) {
+		this.saveable = wAC - woAC;
 		this.wAC = wAC;
 		if (windowType.equals("SinglePane") && (doorType.equals("ParticleBoard"))) {
-			newBill = wAC * spv * pbv;
+			newBill = saveable * spv * pbv;
 
 		}
 
 		if (windowType.equals("SinglePane") && (doorType.equals("Hardwood"))) {
-			newBill = wAC * spv - (wAC * hwv);
+			newBill = saveable * spv - (saveable * hwv);
 
 		}
 
 		if (windowType.equals("DoublePane") && (doorType.equals("ParticleBoard"))) {
-			newBill =  wAC - (wAC * dpv) * pbv;
+			newBill =  saveable - (saveable * dpv) * pbv;
 
 		}
 		if (windowType.equals("DoublePane") && (doorType.equals("Hardwood"))) {
-			newBill = wAC - (wAC * dpv) - (wAC * hwv);
+			newBill = saveable - (saveable * dpv) - (saveable * hwv);
 
 		}
 
 		if (windowType.equals("TriplePane") && (doorType.equals("ParticleBoard"))) {
-			newBill = wAC - (wAC * tpv) * pbv;
+			newBill = saveable - (saveable * tpv) * pbv;
 
 		}
 		if (windowType.equals("TriplePane") && (doorType.equals("Hardwood"))) {
-			newBill = wAC - (wAC * tpv) - (wAC * hwv);
+			newBill = saveable - (saveable * tpv) - (saveable * hwv);
 
 		}
+		newBill += woAC;
 		return newBill;
 
 	}

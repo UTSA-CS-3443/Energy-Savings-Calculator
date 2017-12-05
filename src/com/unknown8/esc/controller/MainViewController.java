@@ -189,7 +189,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			return;
 		}
 		out2.setEditable(true);
-		out2.setText(String.valueOf(this.calc.getNewBill(wAC, typeWindow, typeDoor)));
+		out2.setText(String.valueOf(this.calc.getNewBill(wAC, woAC, typeWindow, typeDoor)));
 		out2.setEditable(false);
 
 		out1.setEditable(true);
@@ -417,7 +417,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		extWallLengthX.setText( (allData.get(6)) );
 		extWallLengthY.setText(  (allData.get(7)) );
 		numWindows.setText( (allData.get(8) ));
-		numDoors.setText( (allData.get(18)) );
+		numDoors.setText( (allData.get(9)) );
 		autoDrawHouse();
 		autoDrawHouse();
 	}
