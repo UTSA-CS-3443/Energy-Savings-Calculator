@@ -22,30 +22,30 @@ public class Calculations {
 
 	public double getNewBill(double wAC, String windowType, String doorType) {
 		this.wAC = wAC;
-		if (windowType.equals("Single pane") && (doorType.equals("Particle board"))) {
+		if (windowType.equals("SinglePane") && (doorType.equals("ParticleBoard"))) {
 			newBill = wAC * spv * pbv;
 
 		}
 
-		if (windowType.equals("Single pane") && (doorType.equals("Hardwood"))) {
+		if (windowType.equals("SinglePane") && (doorType.equals("Hardwood"))) {
 			newBill = wAC * spv - (wAC * hwv);
 
 		}
 
-		if (windowType.equals("Double Pane") && (doorType.equals("Particle board"))) {
+		if (windowType.equals("DoublePane") && (doorType.equals("ParticleBoard"))) {
 			newBill =  wAC - (wAC * dpv) * pbv;
 
 		}
-		if (windowType.equals("Double Pane") && (doorType.equals("Hardwood"))) {
+		if (windowType.equals("DoublePane") && (doorType.equals("Hardwood"))) {
 			newBill = wAC - (wAC * dpv) - (wAC * hwv);
 
 		}
 
-		if (windowType.equals("Triple Pane") && (doorType.equals("Particle board"))) {
+		if (windowType.equals("TriplePane") && (doorType.equals("ParticleBoard"))) {
 			newBill = wAC - (wAC * tpv) * pbv;
 
 		}
-		if (windowType.equals("Triple Pane") && (doorType.equals("Hardwood"))) {
+		if (windowType.equals("TriplePane") && (doorType.equals("Hardwood"))) {
 			newBill = wAC - (wAC * tpv) - (wAC * hwv);
 
 		}

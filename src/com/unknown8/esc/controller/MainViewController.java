@@ -6,7 +6,10 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.unknown8.esc.Main;
 import com.unknown8.esc.model.Calculations;
+import com.unknown8.esc.model.SaveFile;
+import com.unknown8.esc.model.SaveFileOpener;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXButton;
@@ -21,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 
 public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
@@ -75,6 +79,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private MenuItem SaveAs;
 	@FXML
 	private MenuItem New;
+	@FXML
+	private MenuItem Open;
 	private int SaveCount = 0;
 
 	@FXML
@@ -89,7 +95,10 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private ArrayList<Double> cornersY;
 
 	private Calculations calc;
-
+	private SaveFile create;
+	
+	private boolean open = false;
+	
 	public MainViewController() {
 		super();
 		this.calc = new Calculations();
@@ -98,10 +107,10 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
 	public void initialize() {
 		windowType.getItems().clear();
-		windowType.getItems().addAll("Single pane", "Double Pane", "Triple Pane");
+		windowType.getItems().addAll("SinglePane", "DoublePane", "TriplePane");
 
 		doorType.getItems().clear();
-		doorType.getItems().addAll("Particle board", "Hardwood");
+		doorType.getItems().addAll("ParticleBoard", "Hardwood");
 
 		drawHouse();
 		cornersX = new ArrayList<Double>();
@@ -170,11 +179,12 @@ public class MainViewController implements EventHandler<ActionEvent> {
 			}
 
 		} catch (Exception e1) {
+			System.out.println(e1);
 			System.out.println("Fill in every box.");
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Fill In Everything");
 			alert.setHeaderText(null);
-			alert.setContentText("Fill in every box and make selections!");
+			alert.setContentText("Fill in every box and make selections so calculations can be made!");
 			alert.showAndWait();
 			return;
 		}
@@ -218,6 +228,10 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setText(typeDoor);
 		out9.setEditable(false);
 
+		if(open ==  true) {
+			autoDrawHouse();
+			open = false;
+		}
 		// Rectangle House = new Rectangle( adgwdgwad);
 		// drawHouse();
 
@@ -286,44 +300,126 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 	@FXML
 	private void save(ActionEvent e) {
-		try {
-			File sf = new File("ESCsaveFile.txt");
-			PrintStream saveFile = new PrintStream(sf);
-			saveFile.println(typeWindow);
-			saveFile.println(typeDoor);
-			saveFile.println(woAC);
-			saveFile.println(wAC);
-			saveFile.println(inTemp);
-			saveFile.println(outTemp);
-			saveFile.println(wallLengthX);
-			saveFile.println(wallLengthY);
-			saveFile.println(numWin);
-			saveFile.println(numDoor);
-			saveFile.close();
-		} catch (FileNotFoundException ee) {
-			System.out.println("ESCsaveFile.txt was moved");
-		}
+		create = new SaveFile();
+		create.newSave(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(), 
+				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()), Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
+		
+//		try {
+//			File sf = new File("ESCsaveFile.txt");
+//			PrintStream saveFile = new PrintStream(sf);
+//			saveFile.println(typeWindow);
+//			saveFile.println(typeDoor);
+//			saveFile.println(woAC);
+//			saveFile.println(wAC);
+//			saveFile.println(inTemp);
+//			saveFile.println(outTemp);
+//			saveFile.println(wallLengthX);
+//			saveFile.println(wallLengthY);
+//			saveFile.println(numWin);
+//			saveFile.println(numDoor);
+//			saveFile.close();
+//		} catch (FileNotFoundException ee) {
+//			System.out.println("ESCsaveFile.txt was moved");
+//		}
 	}
 
 	@FXML
 	private void saveAs(ActionEvent e) {
-		try {
-			File sf = new File("ESCsaveFile" + SaveCount + ".txt");
-			PrintStream saveFile = new PrintStream(sf);
-			saveFile.println(typeWindow);
-			saveFile.println(typeDoor);
-			saveFile.println(woAC);
-			saveFile.println(wAC);
-			saveFile.println(inTemp);
-			saveFile.println(outTemp);
-			saveFile.println(wallLengthX);
-			saveFile.println(wallLengthY);
-			saveFile.println(numWin);
-			saveFile.println(numDoor);
-			saveFile.close();
-		} catch (FileNotFoundException ee) {
-			System.out.println("ESCsaveFile" + SaveCount + ".txt was moved");
+		
+		
+//		try {
+//			File sf = new File("ESCsaveFile" + SaveCount + ".txt");
+//			PrintStream saveFile = new PrintStream(sf);
+//			saveFile.println(typeWindow);
+//			saveFile.println(typeDoor);
+//			saveFile.println(woAC);
+//			saveFile.println(wAC);
+//			saveFile.println(inTemp);
+//			saveFile.println(outTemp);
+//			saveFile.println(wallLengthX);
+//			saveFile.println(wallLengthY);
+//			saveFile.println(numWin);
+//			saveFile.println(numDoor);
+//			saveFile.close();
+//		} catch (FileNotFoundException ee) {
+//			System.out.println("ESCsaveFile" + SaveCount + ".txt was moved");
+//		}
+	}
+	
+	/**
+	 * for opening file
+	 * @param allData 
+	 */
+	@FXML
+	private void setData2() {
+		open = true;
+		FileChooser chooser = new FileChooser();
+		chooser.setTitle("Choose existing floorplan");
+		chooser.setInitialDirectory(new File("."));
+		File open = chooser.showOpenDialog(Main.stage);
+		SaveFileOpener parse = new SaveFileOpener(open);
+		ArrayList<String> retrieve = parse.getTypes();
+			// windowType.setValue( retrieve.get(0) );
+		windowType.setValue( retrieve.get(0));
+		doorType.setValue( retrieve.get(1) );
+		woACBill.setText(  (retrieve.get(2)) );
+		wACBill.setText(retrieve.get(3));
+		targetTempC.setText( (retrieve.get(4)) );
+		outdoorTempC.setText( (retrieve.get(5)) );
+		extWallLengthX.setText( (retrieve.get(6)) );
+		extWallLengthY.setText(  (retrieve.get(7)) );
+		numWindows.setText( (retrieve.get(8)) );
+		numDoors.setText( (retrieve.get(9)) );
+		autoDrawHouse();
+		autoDrawHouse();
+	}
+	
+	private void autoDrawHouse() {
+		gc = houseLayout.getGraphicsContext2D();
+		gc.setLineWidth(1.0);
+ 
+		gc.setFill(Color.CYAN);
+		gc.fillRect( (houseLayout.getWidth()/2) - (wallLengthX/2),(houseLayout.getHeight()/2) - (wallLengthY/2), wallLengthX, wallLengthY);
+		//gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY);
+	}
+	
+	/**
+	 * to be used in conjuntion with SplashViewController, 
+	 * @param allData
+	 */
+	public void setData(ArrayList<String> allData) {
+		open = true;
+		
+		if(allData.get(0) == "SinglePane") {
+			windowType.getSelectionModel().select(0);
+		} else if(allData.get(0) == "DoublePane") {
+			windowType.getSelectionModel().select(1);
+		} else if (allData.get(0) == "TriplePane"){
+			windowType.getSelectionModel().select(2);
+		} else {
+			typeWindow = null;
 		}
+		
+		if(allData.get(1) == "ParticleBoard") {
+			doorType.getSelectionModel().select(0);
+		} else if(allData.get(1) == "Hardwood") {
+			doorType.getSelectionModel().select(1);
+		} else {
+			typeDoor = null;
+		}
+		//doorType.getSelectionModel().select(0);
+	//	woACBill.setText( (allData.get(3)) );
+				//allData.get(0)); 
+		woACBill.setText(  (allData.get(2)) );
+		wACBill.setText(allData.get(3));
+		targetTempC.setText( (allData.get(4)) );
+		outdoorTempC.setText( (allData.get(5)) );
+		extWallLengthX.setText( (allData.get(6)) );
+		extWallLengthY.setText(  (allData.get(7)) );
+		numWindows.setText( (allData.get(8) ));
+		numDoors.setText( (allData.get(18)) );
+		autoDrawHouse();
+		autoDrawHouse();
 	}
 
 	private void drawHouse() {

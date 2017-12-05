@@ -3,7 +3,8 @@
   <h3>Instructions</h3>
   <h5>Getting Started</h5>
   <p>Our project was written partially with elements from Gradle, this requires the user to have the most recent version of Java 1.9.</p>
-  <p>Download the jdk for the most recent version of Java 1.9. Import the project via a clone of the URI from github into Eclipse. Right click on the folder once it is imported, click properties, and make sure that 1.9 is the library it uses at runtime. </p>
+  <p>Download the jdk for the most recent version of Java 1.9. Import the project via a clone of the URI from github into Eclipse. Right click on the folder once it is imported, click "Properties", then under "Java Build Path" make sure that 1.9 is the library it uses at runtime. </p>
+  <p>If the code shows errors in relation to various JFXButtons and JFXTextfields, then our jfoenix-9.0.0.jar needs to be added as a library to the project. Go back to "Java Build Path", click "Add JARs, then locate jfoenix-9.0.0.jar in the libs folder of this project and add it to the library. This should fix those errors.</p>
   <p>In Eclipse, after importing into a folder under a name of your choice, open package <code>src/main/java</code>, open <com.unknown8.esc>, and you will find the <code>Main.java</code> needed to run the application.</p> 
   <h5>Using the Calculator</h5>
   <p>On the splash screen you have the option to either begin a new save file or open an existing file. </p>
