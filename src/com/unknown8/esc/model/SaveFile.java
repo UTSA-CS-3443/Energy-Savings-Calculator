@@ -56,7 +56,7 @@ public class SaveFile {
 //		this.windows = windows;
 //		this.doors = doors;
 		try {
-			File sf = new File("ESCsaveFile.txt");
+			File sf = new File(System.getProperty("user.dir")+"/Calculator Projects/ESCsaveFile.txt");
 			PrintStream saveFile = new PrintStream(sf);
 			saveFile.println(window);
 			saveFile.println(door);
