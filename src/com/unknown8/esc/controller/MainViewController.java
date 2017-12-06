@@ -6,13 +6,13 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import com.unknown8.esc.Main;
 import com.unknown8.esc.model.Calculations;
 import com.unknown8.esc.model.Directory;
 import com.unknown8.esc.model.SaveFile;
 import com.unknown8.esc.model.SaveFileOpener;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.event.ActionEvent;
@@ -373,6 +373,11 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		extWallLengthY.setText(  (retrieve.get(7)) );
 		numWindows.setText( (retrieve.get(8)) );
 		numDoors.setText( (retrieve.get(9)) );
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Open succesfull");
+		alert.setHeaderText(null);
+		alert.setContentText("Press confirm to auto-create a drawing of your floor dimensions.");
+		alert.showAndWait();
 		autoDrawHouse();
 		autoDrawHouse();
 	}
@@ -392,27 +397,29 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	 */
 	public void setData(ArrayList<String> allData) {
 		open = true;
-		
-		if(allData.get(0) == "SinglePane") {
-			windowType.getSelectionModel().select(0);
-		} else if(allData.get(0) == "DoublePane") {
-			windowType.getSelectionModel().select(1);
-		} else if (allData.get(0) == "TriplePane"){
-			windowType.getSelectionModel().select(2);
-		} else {
-			typeWindow = null;
-		}
-		
-		if(allData.get(1) == "ParticleBoard") {
-			doorType.getSelectionModel().select(0);
-		} else if(allData.get(1) == "Hardwood") {
-			doorType.getSelectionModel().select(1);
-		} else {
-			typeDoor = null;
-		}
+//		
+//		if(allData.get(0) == "SinglePane") {
+//			windowType.getSelectionModel().select(0);
+//		} else if(allData.get(0) == "DoublePane") {
+//			windowType.getSelectionModel().select(1);
+//		} else if (allData.get(0) == "TriplePane"){
+//			windowType.getSelectionModel().select(2);
+//		} else {
+//			typeWindow = null;
+//		}
+//		
+//		if(allData.get(1) == "ParticleBoard") {
+//			doorType.getSelectionModel().select(0);
+//		} else if(allData.get(1) == "Hardwood") {
+//			doorType.getSelectionModel().select(1);
+//		} else {
+//			typeDoor = null;
+//		}
 		//doorType.getSelectionModel().select(0);
 	//	woACBill.setText( (allData.get(3)) );
 				//allData.get(0)); 
+		windowType.setValue( allData.get(0));
+		doorType.setValue( allData.get(1) );
 		woACBill.setText(  (allData.get(2)) );
 		wACBill.setText(allData.get(3));
 		targetTempC.setText( (allData.get(4)) );
@@ -421,7 +428,11 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		extWallLengthY.setText(  (allData.get(7)) );
 		numWindows.setText( (allData.get(8) ));
 		numDoors.setText( (allData.get(9)) );
-		autoDrawHouse();
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Open succesfull");
+		alert.setHeaderText(null);
+		alert.setContentText("Press confirm to auto-create a drawing of your floor dimensions.");
+		alert.showAndWait();
 		autoDrawHouse();
 	}
 
