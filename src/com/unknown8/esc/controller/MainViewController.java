@@ -8,6 +8,7 @@ import java.util.Collections;
 
 import com.unknown8.esc.Main;
 import com.unknown8.esc.model.Calculations;
+import com.unknown8.esc.model.Directory;
 import com.unknown8.esc.model.SaveFile;
 import com.unknown8.esc.model.SaveFileOpener;
 import com.jfoenix.controls.JFXComboBox;
@@ -95,6 +96,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private ArrayList<Double> cornersY;
 
 	private Calculations calc;
+	private Directory dir;
 	private SaveFile create;
 	
 	private boolean open = false;
@@ -106,6 +108,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 	@FXML
 	public void initialize() {
+		dir = new Directory();
+		dir.CreateDirectory();
 		windowType.getItems().clear();
 		windowType.getItems().addAll("SinglePane", "DoublePane", "TriplePane");
 
@@ -325,7 +329,6 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 	@FXML
 	private void saveAs(ActionEvent e) {
-		
 		
 //		try {
 //			File sf = new File("ESCsaveFile" + SaveCount + ".txt");
