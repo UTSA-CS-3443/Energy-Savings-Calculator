@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.6078651685393258" orientation="VERTICAL" prefHeight="892.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unknown8.esc.controller.MainViewController">
+<SplitPane dividerPositions="0.6078651685393258" orientation="VERTICAL" prefHeight="892.0" prefWidth="873.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unknown8.esc.controller.MainViewController">
    <items>
       <AnchorPane prefHeight="395.0" prefWidth="848.0">
          <children>
@@ -27,7 +27,7 @@
                         <MenuItem fx:id="New" mnemonicParsing="false" onAction="#clearFields" text="New" />
                         <MenuItem fx:id="Open" mnemonicParsing="false" onAction="#setData2" text="Open" />
                     <MenuItem fx:id="Save" mnemonicParsing="false" onAction="#save" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save as..." />
+                        <MenuItem fx:id="SaveAs" mnemonicParsing="false" onAction="#saveAs" text="Save as..." />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
@@ -38,6 +38,7 @@
               </menus>
             </MenuBar>
             <Canvas fx:id="houseLayout" height="517.0" layoutX="-8.0" layoutY="26.0" width="879.0" />
+            <JFXTextField fx:id="titleField" alignment="CENTER" promptText="Enter Project Title" AnchorPane.leftAnchor="365.0" />
          </children>
       </AnchorPane>
       <GridPane gridLinesVisible="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="350.0" prefWidth="871.0">

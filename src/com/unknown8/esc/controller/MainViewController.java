@@ -263,6 +263,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		outdoorTempC.setText("");
 		woACBill.setText("");
 		wACBill.setText("");
+		titleField.setText("");
 
 		// Clear the output
 		out1.setEditable(true);

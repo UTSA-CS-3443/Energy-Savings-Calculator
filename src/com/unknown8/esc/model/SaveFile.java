@@ -44,7 +44,7 @@ public class SaveFile {
 	}
 	
 	
-	public void newSave(String window, String door, String noAC, String AC, String indoor, String outdoor, double horizontal, double vertical, String windows, String doors) {
+	public void newSave(String title, String window, String door, String noAC, String AC, String indoor, String outdoor, double horizontal, double vertical, String windows, String doors) {
 //		this.window = window;
 //		this.door = door;
 //		this.noAC = Double(noAC).intValue();
@@ -56,7 +56,9 @@ public class SaveFile {
 //		this.windows = windows;
 //		this.doors = doors;
 		try {
-			File sf = new File(System.getProperty("user.dir")+"/Calculator Projects/ESCsaveFile.txt");
+			if(title == null || title == "")
+				title = "ESCsaveFile";
+			File sf = new File(System.getProperty("user.dir")+"/Calculator Projects/"+title+".txt");
 			PrintStream saveFile = new PrintStream(sf);
 			saveFile.println(window);
 			saveFile.println(door);
@@ -70,7 +72,7 @@ public class SaveFile {
 			saveFile.println(Integer.parseInt(doors));
 			saveFile.close();
 		} catch (FileNotFoundException ee) {
-			System.out.println("ESCsaveFile.txt was moved");
+			System.out.println(title+".txt was moved");
 		}
 	}
 }
