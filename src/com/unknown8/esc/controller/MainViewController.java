@@ -49,6 +49,8 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private JFXTextField numDoors;
 	@FXML
 	private JFXComboBox<String> doorType;
+	@FXML
+	private JFXTextField titleField;
 
 	@FXML
 	private JFXTextField out1;
@@ -90,7 +92,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 	private GraphicsContext gc;
 
-	private String typeWindow, typeDoor;
+	private String typeWindow, typeDoor, title;
 	private double woAC, wAC, inTemp, outTemp, wallLengthX, wallLengthY;
 	private int numWin, numDoor;
 	private ArrayList<Double> cornersX;
@@ -308,7 +310,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
 	private void save(ActionEvent e) {
 		create = new SaveFile();
-		create.newSave(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(),
+		create.newSave(title, typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(),
 				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()),
 				Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
 
@@ -333,10 +335,21 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 	@FXML
 	private void saveAs(ActionEvent e) {
+		title = titleField.getText();
 		sfa = new SaveFileAs();
-		sfa.newSFA(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(),
-				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()),
-				Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
+		File tmpFile = new File(System.getProperty("user.dir")+"/Calculator Projects/"+title+".txt");
+		if(!tmpFile.exists())
+			sfa.newSFA(title, typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(),
+					outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()),
+					Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
+		else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Project already exists");
+			alert.setHeaderText(null);
+			alert.setContentText("Please choose a new project name");
+			alert.showAndWait();
+			return;
+		}
 
 		// try {
 		// File sf = new File("ESCsaveFile" + SaveCount + ".txt");
