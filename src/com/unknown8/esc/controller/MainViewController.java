@@ -12,6 +12,7 @@ import com.unknown8.esc.Main;
 import com.unknown8.esc.model.Calculations;
 import com.unknown8.esc.model.Directory;
 import com.unknown8.esc.model.SaveFile;
+import com.unknown8.esc.model.SaveFileAs;
 import com.unknown8.esc.model.SaveFileOpener;
 import com.jfoenix.controls.JFXButton;
 
@@ -98,6 +99,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private Calculations calc;
 	private Directory dir;
 	private SaveFile create;
+	private SaveFileAs sfa;
 	
 	private boolean open = false;
 	
@@ -329,6 +331,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 	@FXML
 	private void saveAs(ActionEvent e) {
+		sfa = new SaveFileAs();
+		sfa.newSFA(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(), 
+				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()), Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
 		
 //		try {
 //			File sf = new File("ESCsaveFile" + SaveCount + ".txt");
