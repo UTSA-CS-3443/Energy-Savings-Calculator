@@ -100,9 +100,9 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	private Directory dir;
 	private SaveFile create;
 	private SaveFileAs sfa;
-	
+
 	private boolean open = false;
-	
+
 	public MainViewController() {
 		super();
 		this.calc = new Calculations();
@@ -113,10 +113,11 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		dir = new Directory();
 		dir.CreateDirectory();
 		windowType.getItems().clear();
-		windowType.getItems().addAll("SinglePane", "DoublePane", "TriplePane");
+		windowType.getItems().addAll("SinglePane", "TintedSinglePane", "DoublePane", "TintedDoublePane", "TriplePane",
+				"TintedTriplePane");
 
 		doorType.getItems().clear();
-		doorType.getItems().addAll("ParticleBoard", "Hardwood");
+		doorType.getItems().addAll("ParticleBoard", "Hardwood", "Steel");
 
 		drawHouse();
 		cornersX = new ArrayList<Double>();
@@ -234,7 +235,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		out9.setText(typeDoor);
 		out9.setEditable(false);
 
-		if(open ==  true) {
+		if (open == true) {
 			autoDrawHouse();
 			open = false;
 		}
@@ -307,56 +308,59 @@ public class MainViewController implements EventHandler<ActionEvent> {
 	@FXML
 	private void save(ActionEvent e) {
 		create = new SaveFile();
-		create.newSave(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(), 
-				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()), Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
-		
-//		try {
-//			File sf = new File("ESCsaveFile.txt");
-//			PrintStream saveFile = new PrintStream(sf);
-//			saveFile.println(typeWindow);
-//			saveFile.println(typeDoor);
-//			saveFile.println(woAC);
-//			saveFile.println(wAC);
-//			saveFile.println(inTemp);
-//			saveFile.println(outTemp);
-//			saveFile.println(wallLengthX);
-//			saveFile.println(wallLengthY);
-//			saveFile.println(numWin);
-//			saveFile.println(numDoor);
-//			saveFile.close();
-//		} catch (FileNotFoundException ee) {
-//			System.out.println("ESCsaveFile.txt was moved");
-//		}
+		create.newSave(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(),
+				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()),
+				Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
+
+		// try {
+		// File sf = new File("ESCsaveFile.txt");
+		// PrintStream saveFile = new PrintStream(sf);
+		// saveFile.println(typeWindow);
+		// saveFile.println(typeDoor);
+		// saveFile.println(woAC);
+		// saveFile.println(wAC);
+		// saveFile.println(inTemp);
+		// saveFile.println(outTemp);
+		// saveFile.println(wallLengthX);
+		// saveFile.println(wallLengthY);
+		// saveFile.println(numWin);
+		// saveFile.println(numDoor);
+		// saveFile.close();
+		// } catch (FileNotFoundException ee) {
+		// System.out.println("ESCsaveFile.txt was moved");
+		// }
 	}
 
 	@FXML
 	private void saveAs(ActionEvent e) {
 		sfa = new SaveFileAs();
-		sfa.newSFA(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(), 
-				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()), Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
-		
-//		try {
-//			File sf = new File("ESCsaveFile" + SaveCount + ".txt");
-//			PrintStream saveFile = new PrintStream(sf);
-//			saveFile.println(typeWindow);
-//			saveFile.println(typeDoor);
-//			saveFile.println(woAC);
-//			saveFile.println(wAC);
-//			saveFile.println(inTemp);
-//			saveFile.println(outTemp);
-//			saveFile.println(wallLengthX);
-//			saveFile.println(wallLengthY);
-//			saveFile.println(numWin);
-//			saveFile.println(numDoor);
-//			saveFile.close();
-//		} catch (FileNotFoundException ee) {
-//			System.out.println("ESCsaveFile" + SaveCount + ".txt was moved");
-//		}
+		sfa.newSFA(typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(),
+				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()),
+				Double.parseDouble(extWallLengthY.getText()), numWindows.getText(), numDoors.getText());
+
+		// try {
+		// File sf = new File("ESCsaveFile" + SaveCount + ".txt");
+		// PrintStream saveFile = new PrintStream(sf);
+		// saveFile.println(typeWindow);
+		// saveFile.println(typeDoor);
+		// saveFile.println(woAC);
+		// saveFile.println(wAC);
+		// saveFile.println(inTemp);
+		// saveFile.println(outTemp);
+		// saveFile.println(wallLengthX);
+		// saveFile.println(wallLengthY);
+		// saveFile.println(numWin);
+		// saveFile.println(numDoor);
+		// saveFile.close();
+		// } catch (FileNotFoundException ee) {
+		// System.out.println("ESCsaveFile" + SaveCount + ".txt was moved");
+		// }
 	}
-	
+
 	/**
 	 * for opening file
-	 * @param allData 
+	 * 
+	 * @param allData
 	 */
 	@FXML
 	private void setData2() {
@@ -367,17 +371,17 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		File open = chooser.showOpenDialog(Main.stage);
 		SaveFileOpener parse = new SaveFileOpener(open);
 		ArrayList<String> retrieve = parse.getTypes();
-			// windowType.setValue( retrieve.get(0) );
-		windowType.setValue( retrieve.get(0));
-		doorType.setValue( retrieve.get(1) );
-		woACBill.setText(  (retrieve.get(2)) );
+		// windowType.setValue( retrieve.get(0) );
+		windowType.setValue(retrieve.get(0));
+		doorType.setValue(retrieve.get(1));
+		woACBill.setText((retrieve.get(2)));
 		wACBill.setText(retrieve.get(3));
-		targetTempC.setText( (retrieve.get(4)) );
-		outdoorTempC.setText( (retrieve.get(5)) );
-		extWallLengthX.setText( (retrieve.get(6)) );
-		extWallLengthY.setText(  (retrieve.get(7)) );
-		numWindows.setText( (retrieve.get(8)) );
-		numDoors.setText( (retrieve.get(9)) );
+		targetTempC.setText((retrieve.get(4)));
+		outdoorTempC.setText((retrieve.get(5)));
+		extWallLengthX.setText((retrieve.get(6)));
+		extWallLengthY.setText((retrieve.get(7)));
+		numWindows.setText((retrieve.get(8)));
+		numDoors.setText((retrieve.get(9)));
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Open succesfull");
 		alert.setHeaderText(null);
@@ -386,53 +390,56 @@ public class MainViewController implements EventHandler<ActionEvent> {
 		autoDrawHouse();
 		autoDrawHouse();
 	}
-	
+
 	private void autoDrawHouse() {
 		gc = houseLayout.getGraphicsContext2D();
 		gc.setLineWidth(1.0);
- 
+
 		gc.setFill(Color.CYAN);
-		gc.fillRect( (houseLayout.getWidth()/2) - (wallLengthX/2),(houseLayout.getHeight()/2) - (wallLengthY/2), wallLengthX, wallLengthY);
-		//gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4, wallLengthX, wallLengthY);
+		gc.fillRect((houseLayout.getWidth() / 2) - (wallLengthX / 2), (houseLayout.getHeight() / 2) - (wallLengthY / 2),
+				wallLengthX, wallLengthY);
+		// gc.fillRect(houseLayout.getWidth() / 4, houseLayout.getHeight() / 4,
+		// wallLengthX, wallLengthY);
 	}
-	
+
 	/**
-	 * to be used in conjuntion with SplashViewController, 
+	 * to be used in conjuntion with SplashViewController,
+	 * 
 	 * @param allData
 	 */
 	public void setData(ArrayList<String> allData) {
 		open = true;
-//		
-//		if(allData.get(0) == "SinglePane") {
-//			windowType.getSelectionModel().select(0);
-//		} else if(allData.get(0) == "DoublePane") {
-//			windowType.getSelectionModel().select(1);
-//		} else if (allData.get(0) == "TriplePane"){
-//			windowType.getSelectionModel().select(2);
-//		} else {
-//			typeWindow = null;
-//		}
-//		
-//		if(allData.get(1) == "ParticleBoard") {
-//			doorType.getSelectionModel().select(0);
-//		} else if(allData.get(1) == "Hardwood") {
-//			doorType.getSelectionModel().select(1);
-//		} else {
-//			typeDoor = null;
-//		}
-		//doorType.getSelectionModel().select(0);
-	//	woACBill.setText( (allData.get(3)) );
-				//allData.get(0)); 
-		windowType.setValue( allData.get(0));
-		doorType.setValue( allData.get(1) );
-		woACBill.setText(  (allData.get(2)) );
+		//
+		// if(allData.get(0) == "SinglePane") {
+		// windowType.getSelectionModel().select(0);
+		// } else if(allData.get(0) == "DoublePane") {
+		// windowType.getSelectionModel().select(1);
+		// } else if (allData.get(0) == "TriplePane"){
+		// windowType.getSelectionModel().select(2);
+		// } else {
+		// typeWindow = null;
+		// }
+		//
+		// if(allData.get(1) == "ParticleBoard") {
+		// doorType.getSelectionModel().select(0);
+		// } else if(allData.get(1) == "Hardwood") {
+		// doorType.getSelectionModel().select(1);
+		// } else {
+		// typeDoor = null;
+		// }
+		// doorType.getSelectionModel().select(0);
+		// woACBill.setText( (allData.get(3)) );
+		// allData.get(0));
+		windowType.setValue(allData.get(0));
+		doorType.setValue(allData.get(1));
+		woACBill.setText((allData.get(2)));
 		wACBill.setText(allData.get(3));
-		targetTempC.setText( (allData.get(4)) );
-		outdoorTempC.setText( (allData.get(5)) );
-		extWallLengthX.setText( (allData.get(6)) );
-		extWallLengthY.setText(  (allData.get(7)) );
-		numWindows.setText( (allData.get(8) ));
-		numDoors.setText( (allData.get(9)) );
+		targetTempC.setText((allData.get(4)));
+		outdoorTempC.setText((allData.get(5)));
+		extWallLengthX.setText((allData.get(6)));
+		extWallLengthY.setText((allData.get(7)));
+		numWindows.setText((allData.get(8)));
+		numDoors.setText((allData.get(9)));
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Open succesfull");
 		alert.setHeaderText(null);
@@ -460,18 +467,18 @@ public class MainViewController implements EventHandler<ActionEvent> {
 				cornersX.add(event.getX());
 				cornersY.add(event.getY());
 				if (cornersX.size() > 1) {
-				gc.strokeLine(cornersX.get(cornersX.size() - 1), cornersY.get(cornersY.size() - 1),
-						cornersX.get(cornersX.size() - 2), cornersY.get(cornersY.size() - 2));
-				
-				double xMax = Collections.max(cornersX);
-				double yMax = Collections.max(cornersY);
-				double xMin = Collections.min(cornersX);
-				double yMin = Collections.min(cornersY);
-				double xSize = xMax - xMin;
-				double ySize = yMax - yMin;
-				
-				extWallLengthX.setText(String.valueOf(xSize));
-				extWallLengthY.setText(String.valueOf(ySize));
+					gc.strokeLine(cornersX.get(cornersX.size() - 1), cornersY.get(cornersY.size() - 1),
+							cornersX.get(cornersX.size() - 2), cornersY.get(cornersY.size() - 2));
+
+					double xMax = Collections.max(cornersX);
+					double yMax = Collections.max(cornersY);
+					double xMin = Collections.min(cornersX);
+					double yMin = Collections.min(cornersY);
+					double xSize = xMax - xMin;
+					double ySize = yMax - yMin;
+
+					extWallLengthX.setText(String.valueOf(xSize));
+					extWallLengthY.setText(String.valueOf(ySize));
 				}
 			}
 		});
