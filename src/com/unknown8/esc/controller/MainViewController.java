@@ -310,6 +310,7 @@ public class MainViewController implements EventHandler<ActionEvent> {
 
 	@FXML
 	private void save(ActionEvent e) {
+		title = titleField.getText();
 		create = new SaveFile();
 		create.newSave(title, typeWindow, typeDoor, woACBill.getText(), wACBill.getText(), targetTempC.getText(),
 				outdoorTempC.getText(), Double.parseDouble(extWallLengthX.getText()),
